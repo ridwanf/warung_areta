@@ -1,7 +1,21 @@
+.container {
+  margin-top: 2rem;
+}
 .img-product {
- width: 200px; 
+ width: 20rem; 
  height: auto; 
 }
 .total-amount {
-  padding: 10px
+  padding: 0.1rem;
+}
+.total-amount-text {
+  margin-right: 0.2rem;
+}
+
+.price-name {
+  color: gray ;
+  font-size: 1.3rem;
+}
+.price-price {
+  font-size: 1.3rem;
 }
