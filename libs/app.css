@@ -5,11 +5,12 @@
  width: 20rem; 
  height: auto; 
 }
-.total-amount {
-  padding: 0.1rem;
+.total-div {
+  margin: 0.1rem;
+  margin-bottom: 1rem;
 }
-.total-amount-text {
-  margin-right: 0.2rem;
+.total-amount {
+  margin-top: .1rem;
 }
 
 .price-name {
@@ -18,4 +19,17 @@
 }
 .price-price {
   font-size: 1.3rem;
+}
+.price-container {
+  position: fixed;
+  width: 45%;
+  top: 2rem;
+  bottom:0;
+  overflow-y:scroll;
+  overflow-x:hidden;
+}
+.input-money {
+  width: 100%;
+  height: 2rem;
+  text-align: right;
 }

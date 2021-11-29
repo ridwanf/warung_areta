@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="h-100 p-3 border rounded-3">
+          <div class="h-100 p-3 border rounded-3 price-container">
             <h2>Harga</h2>
             <div v-for="(item, index) in salesProduct" class="" style="">
               <div class="row">
@@ -48,11 +48,52 @@
               </div>
             </div>
             <footer>
-              <h2 class="text-end bg-info total-amount">
-                <p class="total-amount-text">
-                  Rp. {{totalPrice}}  
-                </p>
-              </h2>
+              <div class="row bg-info total-div">
+                <div class="col-md-6 total-amount">
+                  <h2 class="">
+                    <p class="">
+                      Total:   
+                    </p>
+                  </h2>
+                </div>
+                <div class="col-md-6 total-amount">
+                  <h2 class="text-end">
+                    <p class="">
+                      Rp. {{totalPrice}}  
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              
+              <div class="row total-div">
+                <div class="col-md-6 total-amount">
+                  <h2 class="">
+                    <p class="">
+                      Uang Bayar:   
+                    </p>
+                  </h2>
+                </div>
+                <div class="col-md-6 total-amount">
+                  <input type="text" v-model="inputMoney" class="input-money" value="" @input="handleInputBlur"/>
+                </div>
+              </div>
+
+              <div class="row bg-info total-div">
+                <div class="col-md-6 total-amount">
+                  <h2 class="">
+                    <p class="">
+                      Kembalian:   
+                    </p>
+                  </h2>
+                </div>
+                <div class="col-md-6 total-amount">
+                  <h2 class="text-end">
+                    <p class="">
+                      Rp. {{changeMoney}}  
+                    </p>
+                  </h2>
+                </div>
+              </div>
               <div class="d-grid gap-2">
                 <button class="btn btn-primary btn-lg" type="button"  v-on:click="clear()">Clear</button>
               </div>            
@@ -151,6 +192,8 @@
           ],
           salesProduct: [],
           totalPrice: 0,
+          inputMoney: '',
+          changeMoney: ''
         }
       },
       methods: {
@@ -168,10 +211,24 @@
             price += parseInt(item.price)
           })
           this.totalPrice = price
+          this.calculateChange()
         },
         clear () {
           this.salesProduct= [],
           this.totalPrice = 0
+          this.inputMoney = ''
+          this.changeMoney = ''
+        },
+        handleInputBlur() {
+          this.inputMoney = this.inputMoney.replace(/[^0-9]/g, '')
+          this.calculateChange()
+        },
+        calculateChange() {
+          if (this.inputMoney) {
+            this.changeMoney = parseInt(this.inputMoney) - parseInt(this.totalPrice)
+          } else {
+            this.changeMoney = ''
+          }
         }
       }
     })
