@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,14 +9,15 @@
   <link rel="stylesheet" href="./libs/app.css">
   <title>Selamat Datang di warung Areta</title>
 </head>
+
 <body>
-  <main> 
+  <main>
     <div class="container" id="app">
       <div class="row align-items-md-stretch">
         <div class="col-md-6">
           <div class="h-100 p-3 bg-light border rounded-3">
             <h2>Produk</h2>
-            <div v-for="item in product" class="card mb-3 text-end" style="">
+            <div v-for="item in product" class="card mb-3 text-end" style="" v-if="item.isActive">
               <div class="row g-0">
                 <div class="col-md-5">
                   <img :src='item.img' class="img-fluid rounded-start img-product" alt="Beng-beng">
@@ -24,7 +26,7 @@
                   <div class="card-body">
                     <h5 class="card-title">{{item.name}}</h5>
                     <p class="card-text">Rp. {{item.price}}</p>
-                    <a href="#" class="btn btn-primary btn-add"  v-on:click="addPrice(item)">Add</a>
+                    <a href="#" class="btn btn-primary btn-add" v-on:click="addPrice(item)">Add</a>
                   </div>
                 </div>
               </div>
@@ -43,7 +45,7 @@
                   <p class="price-price">Rp. {{item.price}}</p>
                 </div>
                 <div class="col-md-1">
-                  <p class="link-remove"  v-on:click="removeProducts(index)">-</p>
+                  <p class="link-remove" v-on:click="removeProducts(index)">-</p>
                 </div>
               </div>
             </div>
@@ -52,29 +54,29 @@
                 <div class="col-md-6 total-amount">
                   <h2 class="">
                     <p class="">
-                      Total:   
+                      Total:
                     </p>
                   </h2>
                 </div>
                 <div class="col-md-6 total-amount">
                   <h2 class="text-end">
                     <p class="">
-                      Rp. {{totalPrice}}  
+                      Rp. {{totalPrice}}
                     </p>
                   </h2>
                 </div>
               </div>
-              
+
               <div class="row total-div">
                 <div class="col-md-6 total-amount">
                   <h2 class="">
                     <p class="">
-                      Uang Bayar:   
+                      Uang Bayar:
                     </p>
                   </h2>
                 </div>
                 <div class="col-md-6 total-amount">
-                  <input type="text" v-model="inputMoney" class="input-money" value="" @input="handleInputBlur"/>
+                  <input type="text" v-model="inputMoney" class="input-money" value="" @input="handleInputBlur" />
                 </div>
               </div>
 
@@ -82,21 +84,21 @@
                 <div class="col-md-6 total-amount">
                   <h2 class="">
                     <p class="">
-                      Kembalian:   
+                      Kembalian:
                     </p>
                   </h2>
                 </div>
                 <div class="col-md-6 total-amount">
                   <h2 class="text-end">
                     <p class="">
-                      Rp. {{changeMoney}}  
+                      Rp. {{changeMoney}}
                     </p>
                   </h2>
                 </div>
               </div>
               <div class="d-grid gap-2">
-                <button class="btn btn-primary btn-lg" type="button"  v-on:click="clear()">Clear</button>
-              </div>            
+                <button class="btn btn-primary btn-lg" type="button" v-on:click="clear()">Clear</button>
+              </div>
             </footer>
           </div>
         </div>
@@ -106,88 +108,101 @@
   <script src="./libs/bootstrap.bundle.min.js"></script>
   <script src="./libs/vue.js"></script>
   <script>
-    new Vue({ 
+    new Vue({
       el: '#app',
       data() {
         return {
           product: [
-          {
-              name: 'Superstar Wafer',
+            {
+              name: 'Nabati Keju',
               price: '1000',
-              id: 'superstar_wafer',
-              img: './imgs/superstar.png'
+              id: 'nabati_keju_single',
+              img: './imgs/nabati-wafer-keju-single.jpeg',
+              isActive: true
             },
             {
-              name: 'Deka Wafer Bites',
-              price: '4500',
-              id: 'deka_wafer',
-              img: './imgs/deka-wafer.jpeg'
+              name: 'Chocolatos',
+              price: '1000',
+              id: 'chocolatos',
+              img: './imgs/chocolatos.jpeg',
+              isActive: true
             },
             {
-              name: 'Nabati Wafer',
-              price: '4000',
-              id: 'nabati_wafer',
-              img: './imgs/wafer-nabati.jpeg'
+              name: 'Momogi Jagung Bakar',
+              price: '1000',
+              id: 'momogi_jagung_bakar',
+              img: './imgs/momogi_jagung_bakar.jpeg',
+              isActive: true
             },
             {
-              name: 'Mayasi Chocoreto Rolls',
-              price: '1500',
-              id: 'mayasi',
-              img: './imgs/mayasi.jpeg'
+              name: 'Beng-Beng',
+              price: '2000',
+              id: 'bengbeng',
+              img: './imgs/bengbeng.png',
+              isActive: true
             },
             {
               name: 'Mamee Monster isi 2',
               price: '2500',
               id: 'mamee_monster',
-              img: './imgs/mamee_monster.jpeg'
+              img: './imgs/mamee_monster.jpeg',
+              isActive: false
             },
             {
               name: 'Superstar Snaps',
               price: '1500',
               id: 'superstar_snaps',
-              img: './imgs/superstar_snaps.jpeg'
+              img: './imgs/superstar_snaps.jpeg',
+              isActive: false
             },
             {
               name: 'Day Day Bird Nest isi 3',
               price: '12500',
               id: 'dayday_nest',
-              img: './imgs/dayday_birdnest.jpeg'
+              img: './imgs/dayday_birdnest.jpeg',
+              isActive: false
             },
             {
               name: 'ABC Sari Kacang Hijau',
               price: '8500',
               id: 'abc_kacang_hijau',
-              img: './imgs/abc_kacang_hijau.jpeg'
+              img: './imgs/abc_kacang_hijau.jpeg',
+              isActive: false
             },
             {
               name: 'Keju Dairy Gold',
               price: '10000',
               id: 'keju_dairygold',
-              img: './imgs/keju_dairygold.jpeg'
+              img: './imgs/keju_dairygold.jpeg',
+              isActive: false
             },
             {
               name: 'Keju Kraft',
               price: '18600',
               id: 'keju_kraft',
-              img: './imgs/keju_kraft.jpeg'
+              img: './imgs/keju_kraft.jpeg',
+              isActive: false
             },
             {
               name: 'Sari Roti',
               price: '9500',
               id: 'sari_roti',
-              img: './imgs/sari_roti.jpeg'
+              img: './imgs/sari_roti.jpeg',
+              isActive: false
             },
             {
               name: 'Rapika 3 in 1',
               price: '3700',
               id: 'rapi_3in1',
-              img: './imgs/rapika_3in1.jpeg'
+              img: './imgs/rapika_3in1.jpeg',
+              isActive: false
             },
             {
               name: 'ABC Sambel Extra Pedas',
               price: '12500',
               id: 'abc_sambel_extra_pedas',
-              img: './imgs/abc_extra_pedas.jpeg'
+              img: './imgs/abc_extra_pedas.jpeg',
+              isActive: false
             }
           ],
           salesProduct: [],
@@ -197,11 +212,11 @@
         }
       },
       methods: {
-        addPrice (item) {
+        addPrice(item) {
           this.salesProduct.push(item)
           this.calculatePrice()
         },
-        removeProducts (index) {
+        removeProducts(index) {
           this.salesProduct.splice(index, 1)
           this.calculatePrice()
         },
@@ -213,9 +228,9 @@
           this.totalPrice = price
           this.calculateChange()
         },
-        clear () {
-          this.salesProduct= [],
-          this.totalPrice = 0
+        clear() {
+          this.salesProduct = [],
+            this.totalPrice = 0
           this.inputMoney = ''
           this.changeMoney = ''
         },
@@ -234,4 +249,5 @@
     })
   </script>
 </body>
+
 </html>
